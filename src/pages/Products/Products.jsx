@@ -1,5 +1,6 @@
 // src/pages/Products/Products.jsx
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { getProductList } from '../../lib/api/ProductService';
 import ProductCard from '../../components/molecule/ProductCard';
 import SearchInput from '../../components/molecule/SearchInput';
@@ -9,7 +10,6 @@ import Pagination from '../../components/molecule/Pagination';
 import './Products.css';
 
 function Products() {
-  const [bestProducts, setBestProducts] = useState([]);
   const [allProducts, setAllProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [keyword, setKeyword] = useState('');
@@ -19,21 +19,6 @@ function Products() {
   const [totalPages, setTotalPages] = useState(1);
 
   const pageSize = 10;
-
-  // 베스트 상품 데이터 가져오기 (좋아요순, 4개)
-  useEffect(() => {
-    const fetchBestProducts = async () => {
-      try {
-        const response = await getProductList(1, 4, '', 'favorite'); // 좋아요순으로 4개
-        const products = response.list || [];
-        setBestProducts(products);
-      } catch (error) {
-        console.error('베스트 상품 로딩 실패:', error);
-      }
-    };
-
-    fetchBestProducts();
-  }, []); // 한 번만 실행 (의존성 배열 비어있음)
 
   // 전체 상품 데이터 가져오기
   useEffect(() => {
@@ -82,19 +67,6 @@ function Products() {
 
   return (
     <main className="productsPage">
-      {/* 베스트 상품 섹션 - 항상 표시 */}
-      <section className="bestProducts">
-        <h2>베스트 상품</h2>
-        <div className="bestProductsGrid">
-          {bestProducts.map((product) => (
-            <ProductCard 
-              key={`best-${product.id}`} 
-              product={product}
-            />
-          ))}
-        </div>
-      </section>
-
       {/* 판매 중인 상품 섹션 */}
       <section className="allProducts">
         <div className="allProductsHeader">
@@ -105,13 +77,14 @@ function Products() {
               value={keyword}                     
               onChange={handleSearchChange}
             />
-            <Button variant="primary" size="medium">
-              상품 등록하기
-            </Button>
+            <Link to="/registration">
+              <Button variant="primary" size="medium">
+                상품 등록하기
+              </Button>
+            </Link>
             <Dropdown
               options={[
-                { value: 'recent', label: '최신순' },
-                { value: 'favorite', label: '좋아요순' }
+                { value: 'recent', label: '최신순' }
               ]}
               value={sortBy}
               onChange={handleSortChange}

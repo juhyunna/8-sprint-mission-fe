@@ -1,4 +1,3 @@
-
 @font-face {
   font-family: "ROKAF";
   src: url("/public/font/ROKAF/ROKAFSansBold.woff2") format("opentype");
@@ -24,7 +23,7 @@
   align-items: center;
   justify-content: center;
   z-index: 1000;
-  border-bottom: 1px solid #DFDFDF;
+  border-bottom: 1px solid #dfdfdf;
 }
 
 .nav-container {
@@ -32,41 +31,124 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: 0.56rem 25rem; /* 9px 400px */
-  max-width: 1920px;
+  padding: 0.9rem 3.2rem; /* 9px 32px */
+  max-width: 192rem;
+}
+
+.nav-menu {
+  display: none; /* 기본적으로 숨김 */
+  gap: 2rem;
+  align-items: center;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #374151;
+  font-weight: 500;
+  font-size: 1.6rem;
+  padding: 0.8rem 1.6rem;
+  border-radius: 0.8rem;
+  transition: all 0.2s ease;
+}
+
+.nav-link:hover {
+  background-color: #f3f4f6;
+}
+
+.nav-link.active {
+  color: #3692ff;
+  font-weight: 600;
 }
 
 .header-logo-link {
   display: flex;
   align-items: center;
   text-decoration: none;
-  min-width: 9.56rem; /* 153px */
+  min-width: 15.3rem; /* 153px */
 }
 
 .pandaMarketLogo {
-  width: 2.5rem; /* 40px */
+  width: 4rem; /* 40px */
   height: auto;
-  padding-right: 0.54rem;  /* 8.594px */
+  padding-right: 0.86rem; /* 8.594px */
 }
 
 .header-txt {
   font-family: "ROKAF", "Pretendard", sans-serif;
-  font-size: 1.6rem;
+  font-size: 2.56rem; /* 25.6px */
   font-weight: bold; /* Bold 사용 */
   color: var(--primary-100);
   margin: 0;
 }
 
 .login-btn {
-  min-width: 8rem; /* 128px */
-  height: 3rem; /* 48px */
+  min-width: 12.8rem; /* 128px */
+  height: 4.8rem; /* 48px */
   background-color: var(--primary-100);
   color: #ffffff;
-  border-radius: 0.5rem; /* 8px */
+  border-radius: 0.8rem; /* 8px */
   border-bottom: 1px solid #dfdfdf;
   font-weight: 600;
-  font-size: 1rem; /* 16px */
+  font-size: 1.6rem; /* 16px */
   display: flex;
   justify-content: center;
   align-items: center;
+  text-decoration: none;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 76.8rem) {
+  .nav-container {
+    padding: 0.9rem 1.6rem;
+  }
+
+  .nav-menu {
+    display: flex; /* 모바일에서만 표시 */
+    gap: 1.6rem;
+  }
+
+  .nav-link {
+    font-size: 1.44rem;
+    padding: 0.64rem 1.28rem;
+  }
+
+  .header-txt {
+    font-size: 2.24rem;
+  }
+
+  .login-btn {
+    min-width: 9.6rem;
+    height: 4rem;
+    font-size: 1.44rem;
+  }
+}
+
+@media (max-width: 48rem) {
+  .nav-container {
+    padding: 0.8rem 1.28rem;
+  }
+
+  .nav-menu {
+    display: flex; /* 모바일에서만 표시 */
+    gap: 0.8rem;
+  }
+
+  .nav-link {
+    font-size: 1.28rem;
+    padding: 0.48rem 0.96rem;
+  }
+
+  .header-txt {
+    font-size: 1.92rem;
+  }
+
+  .pandaMarketLogo {
+    width: 3.2rem;
+  }
+
+  .login-btn {
+    min-width: 8rem;
+    height: 3.2rem;
+    font-size: 1.28rem;
+  }
 }

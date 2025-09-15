@@ -1,9 +1,15 @@
 import axios from "axios"; // HTTP 요청용 라이브러리
 
 // 상품 목록 가져오기, async/await 방식으로 비동기 처리
-export async function getProductList(page = 1, pageSize = 10, keyword = "", orderBy = "recent") {  // ← orderBy 파라미터 추가
-  const apiUrl = "https://panda-market-api.vercel.app/products";
-  
+export async function getProductList(
+  page = 1,
+  pageSize = 10,
+  keyword = "",
+  orderBy = "recent"
+) {
+  // ← orderBy 파라미터 추가
+  const apiUrl = "https://panda-market-project.onrender.com/products";
+
   try {
     // await로 응답을 기다림, GET 요청으로 상품 목록 조회
     const response = await axios.get(apiUrl, {
@@ -11,10 +17,10 @@ export async function getProductList(page = 1, pageSize = 10, keyword = "", orde
         page: page,
         pageSize: pageSize,
         keyword: keyword,
-        orderBy: orderBy,  // ← 이 줄 추가!
+        orderBy: orderBy, // ← 이 줄 추가!
       },
     });
-    
+
     console.log("상품 리스트:", response.data);
     return response.data;
   } catch (error) {
@@ -32,7 +38,7 @@ export async function getProductList(page = 1, pageSize = 10, keyword = "", orde
 
 // 상품 상세 정보 가져오기
 export async function getProduct(productId) {
-  const url = `https://panda-market-api-crud.vercel.app/products/${productId}`;
+  const url = `https://panda-market-project.onrender.com/products/${productId}`;
 
   try {
     const response = await axios.get(url);
@@ -52,14 +58,20 @@ export async function getProduct(productId) {
 }
 
 // 새 상품 생성하기, POST 요청으로 서버에 데이터 전송
-export async function createProduct(name, description, price, tags, images) {
-  const url = "https://panda-market-api-crud.vercel.app/products";
+export async function createProduct(
+  name,
+  description,
+  price,
+  tags,
+  images = []
+) {
+  const url = "https://panda-market-project.onrender.com/products";
 
   // 서버가 요구하는 상품 데이터 형식에 맞춰 객체 생성
   const productInfo = {
     name: name, // 상품명
     description: description, // 상품 설명
-    price: price, // 가격 (숫자)
+    price: parseInt(price), // 가격 (숫자)
     tags: tags, // 태그 배열
     images: images, // 이미지 URL 배열
   };
@@ -88,7 +100,7 @@ export async function patchProduct(
   tags,
   images
 ) {
-  const url = `https://panda-market-api-crud.vercel.app/products/${productId}`;
+  const url = `https://panda-market-project.onrender.com/products/${productId}`;
 
   // 수정할 데이터들을 객체로 정리
   const updatedData = {
@@ -117,7 +129,7 @@ export async function patchProduct(
 
 // 상품 삭제하기, DELETE 요청으로 서버에서 제거
 export async function deleteProduct(productId) {
-  const url = `https://panda-market-api-crud.vercel.app/products/${productId}`;
+  const url = `https://panda-market-project.onrender.com/products/${productId}`;
 
   try {
     // DELETE는 요청 바디 없이 URL의 ID만으로 삭제

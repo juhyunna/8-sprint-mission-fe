@@ -41,7 +41,7 @@
   font-size: 1rem;
   font-weight: 700;
   margin: 0 0 0.5rem 0;
-  color: #111827;
+  color: var(--secondary-gray900, #111827);
 }
 
 /* 라이크 관련 CSS 삭제됨 */

@@ -1,17 +1,19 @@
+import React from "react";
+import { Link } from "react-router-dom";
 import "../../../styles/global/global.css";
 import "./Footer.css";
 
 function Footer() {
   return (
-<footer>
+    <footer>
       <div className="footerLinks">
         <div className="footerLinksContainer">
           <div className="footerLinksRight">
             <p className="footerCopyright">©codeit - 2024</p>
           </div>
           <div className="footerLinksCenter">
-            <a href="/privacy.html">Privacy Policy</a>
-            <a href="/faq.html">FAQ</a>
+            <Link to="/privacy">Privacy Policy</Link>
+            <Link to="/faq">FAQ</Link>
           </div>
           <div className="footerLinksLeft" target="_blank">
             <a href="https://facebook.com" target="_blank">
@@ -29,7 +31,7 @@ function Footer() {
           </div>
         </div>
       </div>
-  </footer>
+    </footer>
   );
 }
 
